@@ -1,4 +1,6 @@
 const URIListModel = require("./models/URIList.model");
+const dns = require('dns')
+const dns_promises  = dns.promises
 
 
 const saveNewURI = async (uri)=>{
