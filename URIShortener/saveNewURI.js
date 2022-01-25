@@ -1,10 +1,10 @@
 const URIListModel = require("./models/URIList.model");
-const dns = require('dns/promises')
+const dns = require('dns')
 
 
 const saveNewURI = async (uri)=>{
   const cleanURI = uri.replace(/^https?:\/\//gi,'')
-  await dns.lookup(cleanURI, {
+  await dns.promises.lookup(cleanURI, {
     family: 6,
     hints: dns.ADDRCONFIG | dns.V4MAPPED,
   })
