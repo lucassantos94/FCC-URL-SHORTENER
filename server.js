@@ -33,9 +33,7 @@ app.post('/api/shorturl',async (req,res)=>{
     res.send({original_url:data.long_uri,short_url:data._id})
     
   } catch (error) {
-    if(error.code === 'ENOTFOUND')
-      res.send({error: 'invalid url'})
-    res.status(500).send()
+    res.send({error: 'invalid url'})
   }
 })
 

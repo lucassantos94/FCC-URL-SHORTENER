@@ -4,11 +4,11 @@ const dns_promises  = dns.promises
 
 
 const saveNewURI = async (uri)=>{
+  if (! (/^https*:\/\//i.test(uri))){
+    throw new Error('Invalid URL')
+  }
   const cleanURI = new URL(uri).hostname
-  await dns_promises.lookup(cleanURI, {
-    family: 6,
-    hints: dns.ADDRCONFIG | dns.V4MAPPED,
-  })
+  await dns_promises.lookup(cleanURI)
 
   const existantURI = await URIListModel.findOne({long_uri:uri})
   if(!!existantURI)
